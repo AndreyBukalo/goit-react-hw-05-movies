@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export const Home = () => {
-    const [movies, setMovies] = useState(() => []);
-    useEffect(() => {
-        fetchTrendMovies().then(data => {
+  const [movies, setMovies] = useState(() => []);
+  useEffect(() => {
+    fetchTrendMovies().then(data => {
       setMovies([...data]);
-        })
-       
-    },[])
+    });
+  }, []);
   return (
     <main>
       <TrendMovies movies={movies} />

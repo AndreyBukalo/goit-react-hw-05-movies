@@ -22,16 +22,29 @@ export async function fetchTrendMovies(page = 1) {
 export async function fetchBySearchMovies(formInput, page = 1) {
   try {
     const { data } = await axios.get(
-      `${BY_SEARCH}?api_key=${KEY}&query=${formInput}&page=${page}`
+      `${BY_SEARCH}?api_key=${KEY}&${formInput}`
     );
-    return data;
+    return data.results;
   } catch (error) {}
 }
 
 export async function fetchByID(id) {
   try {
-    const { data } = await axios.get(`${BY_ID}${id}?api_key=${KEY}`);
-    return data;
+    const {data} = await axios.get(`${BY_ID}${id}?api_key=${KEY}`);
+    return  data;
   } catch (error) {}
 }
 
+export async function fetchByCredits(id) {
+  try {
+    const {data} = await axios.get(`${BY_ID}${id}/credits?api_key=${KEY}`);
+    return data.cast;
+  } catch (error) {}
+}
+
+export async function fetchByReviews(id) {
+  try {
+    const { data } = await axios.get(`${BY_ID}${id}/reviews?api_key=${KEY}`);
+    return data.results;
+  } catch (error) {}
+}

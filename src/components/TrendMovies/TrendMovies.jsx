@@ -1,18 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MovieItem } from 'components/TrendMoviesItem/TrendMoviesItem';
 
 
-export const TrendMovies = ({ movies, onClick }) => {
+export const TrendMovies = ({ movies }) => {
   return (
     <ul>
       {movies.map(({ id, title, vote_average, poster_path }) => (
-        <MovieItem
-          key={id}
-          title={title}
-          poster_path={poster_path}
-          vote_average={vote_average}
-        />
+        <li key={id}>
+          <Link to={`/movie/${id}`}>
+            <MovieItem
+              title={title}
+              poster_path={poster_path}
+              vote_average={vote_average}
+            />
+          </Link>
+        </li>
       ))}
     </ul>
   );
