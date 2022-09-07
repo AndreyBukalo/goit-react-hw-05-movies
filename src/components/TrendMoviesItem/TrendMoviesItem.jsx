@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, MovieHeader } from './TrendMoviesItemStyled';
+import { Image, MovieHeader, Rating } from './TrendMoviesItemStyled';
 import PropTypes from 'prop-types';
 import { renderPoster } from 'components/Api/api';
 
@@ -12,7 +12,7 @@ export const MovieItem = ({ title, vote_average, poster_path }) => {
     <>
       <MovieHeader>{title}</MovieHeader>
       <Image src={imgUrl} alt={title} />
-      <p>{vote_average}</p>
+      <Rating>{vote_average.toFixed(1)}</Rating>
     </>
   );
 };

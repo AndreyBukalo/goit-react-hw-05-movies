@@ -23,10 +23,12 @@ export const ListItem = styled.li`
   display: flex;
   flex-direction: column;
   margin-right: 60px;
-  margin-bottom: 20px;
-  border: 4px solid RGBA(0, 8, 0, 0.1);
-  border-radius: 10px;
-  background-color: floralwhite;
+  margin-bottom: 36px;
+  background: rgba(255, 255, 255, 0.178);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius:20px;
   &:hover {
     transform: scale(1.05);
     transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);

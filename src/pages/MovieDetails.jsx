@@ -1,30 +1,55 @@
-import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
+import { Outlet, useParams, Link } from 'react-router-dom';
+import { Container } from 'components/SharedLayout/SharedLayoutStyled';
 import { useState, useEffect, Suspense } from 'react';
 import { fetchByID } from '../components/Api/api';
-
+import { renderPoster } from '../components/Api/api';
+import {
+  Wrapper,
+  Image,
+  Desc,
+} from 'components/TrendMoviesItem/movieDetailsStyled';
 export const MovieDetails = () => {
   const { id } = useParams();
-  const [movies, setMovies] = useState(() => []);
+  const [movies, setMovies] = useState('');
   useEffect(() => {
     fetchByID(id).then(data => {
       setMovies(data);
     });
-  }, [movies]);
+  }, [id]);
 
-
-
+  let imgUrl = renderPoster + movies.poster_path;
+  if (movies.poster_path === null) {
+    imgUrl = 'https://i.postimg.cc/MTBLYYMP/poster-not-available.jpg';
+  }
+  const { title, overview, genres, release_date, vote_average } = movies;
+  console.log(movies);
   return (
-    <main>
-      <div>
-        <h1>{movies.title}</h1>
-        <Link to="cast">
-          <button>CAST</button>
-        </Link>
-        <Link to="reviews">
-          <button>Reviews</button>
-        </Link>
-        <Outlet />
-      </div>
-    </main>
+    <Container>
+      {movies && (
+        <section>
+          <Wrapper>
+            <Image src={imgUrl} alt={title} />
+            <Desc>
+              <h1>{title}</h1>
+              <p>{overview}</p>
+            </Desc>
+          </Wrapper>
+          <Desc>
+            <p>{genres.map(gen => gen.name).join(', ')}</p>
+            <p>{release_date}</p>
+            <p>{vote_average.toFixed(1)}</p>
+          </Desc>
+          <Link to="cast">
+            <button>CAST</button>
+          </Link>
+          <Link to="reviews">
+            <button>Reviews</button>
+          </Link>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
+        </section>
+      )}
+    </Container>
   );
 };
