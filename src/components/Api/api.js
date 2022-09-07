@@ -22,7 +22,7 @@ export async function fetchTrendMovies(page = 1) {
 export async function fetchBySearchMovies(formInput, page = 1) {
   try {
     const { data } = await axios.get(
-      `${BY_SEARCH}?api_key=${KEY}&${formInput}`
+      `${BY_SEARCH}?api_key=${KEY}&query=${formInput}`
     );
     return data.results;
   } catch (error) {}

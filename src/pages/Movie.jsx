@@ -1,32 +1,15 @@
-import { SearchBox } from "components/SearchBar/SearchBar";
-import { useSearchParams } from 'react-router-dom';
-import { fetchBySearchMovies } from "components/Api/api";
-import { useEffect, useState } from "react";
-import { TrendMovies } from "components/TrendMovies/TrendMovies";
+import { useState } from 'react';
+import { TrendMovies } from 'components/TrendMovies/TrendMovies';
+import SearchBox from 'components/SearchBar/SearchBar';
 
-
-
-
-export const Movie = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const productName = searchParams.get('query') ?? '';
-    const updateQueryString = query => {
-      const nextParams = query !== '' ? { query } : {};
-      setSearchParams(nextParams);
-    };
-
-
- const [movies, setMovies] = useState(() => []);
- useEffect(() => {
-   fetchBySearchMovies(searchParams).then(data => {
-     setMovies(data);
-   });
- }, [searchParams]);
-
-    return (
-      <>
-        <SearchBox value={productName} onChange={updateQueryString} />
-            {movies && <TrendMovies movies={movies} />}
-      </>
-    );
+const Movie = () => {
+  const [movies, setMovies] = useState(null);
+  return (
+    <section>
+      <SearchBox setMovies={setMovies} />
+      {movies && <TrendMovies movies={movies} />}
+    </section>
+  );
 };
+
+export default Movie;
