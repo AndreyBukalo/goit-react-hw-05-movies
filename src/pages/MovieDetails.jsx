@@ -7,6 +7,7 @@ import {
   Wrapper,
   Image,
   Desc,
+  TextWrap,
 } from 'components/TrendMoviesItem/movieDetailsStyled';
 export const MovieDetails = () => {
   const { id } = useParams();
@@ -35,9 +36,16 @@ export const MovieDetails = () => {
             </Desc>
           </Wrapper>
           <Desc>
-            <p>{genres.map(gen => gen.name).join(', ')}</p>
-            <p>{release_date}</p>
-            <p>{vote_average.toFixed(1)}</p>
+            <p>
+              <TextWrap>Genres: </TextWrap>
+              {genres.map(gen => gen.name).join(', ')}
+            </p>
+            <p>
+              <TextWrap>Release Date:</TextWrap> {release_date}
+            </p>
+            <p>
+              <TextWrap>Rating:</TextWrap> {vote_average.toFixed(1)}
+            </p>
           </Desc>
           <Link to="cast">
             <button>CAST</button>

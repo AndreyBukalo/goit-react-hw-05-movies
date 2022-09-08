@@ -17,4 +17,9 @@ margin-left:20px;
 export const Desc = styled.div`
     margin-left:20px;
     color:white;
+    font-weight:500;
+`
+
+export const TextWrap = styled.span`
+  color:orange;
 `

@@ -5,8 +5,11 @@ import { Outlet, NavLink } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-width:100%;
-height:100%;
+  background: #474cff;
+  background: -webkit-linear-gradient(0deg, #343677 0%, #012444 100%);
+  background: linear-gradient(0deg, #474cff 0%, #012444 100%);
+  width: 100%;
+ min-height:100vh;
 `;
 
 export const Header = styled.header`
