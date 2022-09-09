@@ -17,9 +17,8 @@ export const MovieItem = ({ title, vote_average, poster_path }) => {
   );
 };
 
-// ImageGalleryItem.propTypes = {
-//   webformatURL: PropTypes.string,
-//   largeImageURL: PropTypes.string,
-//   tags: PropTypes.string,
-//   onClick: PropTypes.func.isRequired,
-// };
+MovieItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  poster_path: PropTypes.string.isRequired
+};

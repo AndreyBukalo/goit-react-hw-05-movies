@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { fetchBySearchMovies } from 'components/Api/api';
+import { Wrapper, Form, Input, Icon, Button } from './SearchBarStyled';
 
 const SearchBox = ({ setMovies }) => {
   const {
@@ -12,9 +13,7 @@ const SearchBox = ({ setMovies }) => {
     formState: { errors },
   } = useForm({ defaultValues: { search: '' } });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [search, setSearch] = useState(
-    () => searchParams.get('query') ?? ''
-  );
+  const [search, setSearch] = useState(() => searchParams.get('query') ?? '');
 
   const onSubmit = ({ search }) => {
     setSearch(search);
@@ -31,19 +30,19 @@ const SearchBox = ({ setMovies }) => {
   }, [search, setMovies]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <button type="submit">
-          <p>Search</p>
-        </button>
-        <input
+    <Wrapper>
+      <Form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <Input
           {...register('search', { required: 'This field is required' })}
           placeholder="Search movie by name"
           autoFocus
         />
-      </form>
+        <Button type="submit">
+          <Icon />
+        </Button>
+      </Form>
       <p>{errors.search?.message}</p>
-    </>
+    </Wrapper>
   );
 };
 

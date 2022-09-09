@@ -1,4 +1,4 @@
-import { Outlet, useParams, Link } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/SharedLayout/SharedLayoutStyled';
 import { useState, useEffect, Suspense } from 'react';
 import { fetchByID } from '../components/Api/api';
@@ -8,8 +8,14 @@ import {
   Image,
   Desc,
   TextWrap,
+  Title,
+  BackBtn,
 } from 'components/TrendMoviesItem/movieDetailsStyled';
-export const MovieDetails = () => {
+import { Btn, Linked } from 'components/Cast/CastStyled';
+
+const MovieDetails = () => {
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
   const { id } = useParams();
   const [movies, setMovies] = useState('');
   useEffect(() => {
@@ -23,15 +29,16 @@ export const MovieDetails = () => {
     imgUrl = 'https://i.postimg.cc/MTBLYYMP/poster-not-available.jpg';
   }
   const { title, overview, genres, release_date, vote_average } = movies;
-  console.log(movies);
+
   return (
     <Container>
+      <BackBtn to={backLinkHref}>Back</BackBtn>
       {movies && (
         <section>
           <Wrapper>
             <Image src={imgUrl} alt={title} />
             <Desc>
-              <h1>{title}</h1>
+              <Title>{title}</Title>
               <p>{overview}</p>
             </Desc>
           </Wrapper>
@@ -47,12 +54,12 @@ export const MovieDetails = () => {
               <TextWrap>Rating:</TextWrap> {vote_average.toFixed(1)}
             </p>
           </Desc>
-          <Link to="cast">
-            <button>CAST</button>
-          </Link>
-          <Link to="reviews">
-            <button>Reviews</button>
-          </Link>
+          <Linked to="cast">
+            <Btn>CAST</Btn>
+          </Linked>
+          <Linked to="reviews">
+            <Btn>Reviews</Btn>
+          </Linked>
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
@@ -61,3 +68,4 @@ export const MovieDetails = () => {
     </Container>
   );
 };
+export default MovieDetails;

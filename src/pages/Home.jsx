@@ -3,7 +3,7 @@ import { fetchTrendMovies } from 'components/Api/api';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export const Home = () => {
+ const Home = () => {
   const [movies, setMovies] = useState(() => []);
   useEffect(() => {
     fetchTrendMovies().then(data => {
@@ -16,3 +16,4 @@ export const Home = () => {
     </main>
   );
 };
+export default Home;

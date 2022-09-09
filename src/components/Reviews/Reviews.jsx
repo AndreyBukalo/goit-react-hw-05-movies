@@ -1,8 +1,10 @@
-import { useState, useEffect, Suspense } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { fetchByReviews } from '../Api/api';
+import { TextWrap } from 'components/TrendMoviesItem/movieDetailsStyled';
+import { List, Header, TextName, Text, RatingText } from './ReviewsStyled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { id } = useParams();
   const [reviews, setReviews] = useState(() => []);
   useEffect(() => {
@@ -12,20 +14,38 @@ export const Reviews = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
+      {reviews.length === 0 ? (
+        <TextName>No Reviews</TextName>
+      ) : (
+        <List>
+          <Header>Users Reviews</Header>
           {reviews.map(
-              ({ id, author, content, created_at,author_details: { rating } }) => {
-            
-           return (
-             <li key={id}>
-               <p>{author}</p>
-               <p>{content}</p>
-               <p>{rating}</p>
-               <p>{created_at}</p>
-             </li>
-           );
-          }
+            ({
+              id,
+              author,
+              content,
+              created_at,
+              author_details: { rating },
+            }) => {
+              return (
+                <li key={id}>
+                  <TextName> Author: {author}</TextName>
+                  <Text>
+                    <TextWrap>Review:</TextWrap> {content}
+                  </Text>
+                  <RatingText>Rating: {rating ? rating : 'N/A'}</RatingText>
+                  <RatingText>
+                    Date: {new Date(created_at).toLocaleDateString('en-US')}
+                  </RatingText>
+                </li>
+              );
+            }
+          )}
+        </List>
       )}
-    </div>
+    </>
   );
 };
+
+export default Reviews;

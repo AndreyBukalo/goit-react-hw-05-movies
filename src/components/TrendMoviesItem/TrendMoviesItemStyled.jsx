@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const MovieHeader = styled.h1`
   text-decoration: none;
@@ -6,9 +6,7 @@ export const MovieHeader = styled.h1`
 `;
 export const Image = styled.img`
   width: 100%;
- 
 `;
-
 
 export const Rating = styled.p`
   color: orange;
