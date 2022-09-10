@@ -29,7 +29,7 @@ TrendMovies.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       vote_average: PropTypes.number.isRequired,
-      poster_path: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
     })
   ),
 };

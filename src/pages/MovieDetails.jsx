@@ -1,5 +1,5 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import { Container } from 'components/SharedLayout/SharedLayoutStyled';
+
 import { useState, useEffect, Suspense } from 'react';
 import { fetchByID } from '../components/Api/api';
 import { renderPoster } from '../components/Api/api';
@@ -10,6 +10,7 @@ import {
   TextWrap,
   Title,
   BackBtn,
+  Container,
 } from 'components/TrendMoviesItem/movieDetailsStyled';
 import { Btn, Linked } from 'components/Cast/CastStyled';
 

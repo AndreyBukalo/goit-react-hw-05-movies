@@ -4,7 +4,14 @@ import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { fetchBySearchMovies } from 'components/Api/api';
-import { Wrapper, Form, Input, Icon, Button } from './SearchBarStyled';
+import {
+  Wrapper,
+  Form,
+  Input,
+  Icon,
+  Button,
+  ErrorText,
+} from './SearchBarStyled';
 
 const SearchBox = ({ setMovies }) => {
   const {
@@ -46,7 +53,7 @@ const SearchBox = ({ setMovies }) => {
           <Icon />
         </Button>
       </Form>
-      <p>{errors.search?.message}</p>
+      <ErrorText>{errors.search?.message}</ErrorText>
     </Wrapper>
   );
 };

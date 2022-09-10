@@ -63,3 +63,9 @@ export const Button = styled.button`
     outline: none;
   }
 `;
+
+export const ErrorText = styled.p`
+font-size:16px;
+font-weight:500;
+margin-left:10px;
+color:red;`

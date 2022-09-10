@@ -20,5 +20,5 @@ export const MovieItem = ({ title, vote_average, poster_path }) => {
 MovieItem.propTypes = {
   title: PropTypes.string.isRequired,
   vote_average: PropTypes.number.isRequired,
-  poster_path: PropTypes.string.isRequired
+  poster_path: PropTypes.string,
 };
