@@ -1,5 +1,5 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-
+import Spinner from 'components/Spinner/Spinner';
 import { useState, useEffect, Suspense } from 'react';
 import { fetchByID } from '../components/Api/api';
 import { renderPoster } from '../components/Api/api';
@@ -61,7 +61,7 @@ const MovieDetails = () => {
           <Linked to="reviews" state={{ from: backLinkHref }}>
             <Btn>Reviews</Btn>
           </Linked>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Spinner />}>
             <Outlet />
           </Suspense>
         </section>
