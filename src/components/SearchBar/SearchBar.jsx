@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { fetchBySearchMovies } from 'components/Api/api';
 import { Wrapper, Form, Input, Icon, Button } from './SearchBarStyled';
 
@@ -22,11 +23,15 @@ const SearchBox = ({ setMovies }) => {
   };
 
   useEffect(() => {
-    if (search) {
-      fetchBySearchMovies(search).then(data => {
-        setMovies(data);
-      });
+    if (!search) {
+      return;
     }
+    fetchBySearchMovies(search).then(data => {
+      if (data.length === 0) {
+        return toast.error('Sorry, movie not found');
+      }
+      setMovies(data);
+    });
   }, [search, setMovies]);
 
   return (

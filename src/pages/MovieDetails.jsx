@@ -54,10 +54,10 @@ const MovieDetails = () => {
               <TextWrap>Rating:</TextWrap> {vote_average.toFixed(1)}
             </p>
           </Desc>
-          <Linked to="cast">
+          <Linked to="cast" state={{ from: backLinkHref }}>
             <Btn>CAST</Btn>
           </Linked>
-          <Linked to="reviews">
+          <Linked to="reviews" state={{ from: backLinkHref }}>
             <Btn>Reviews</Btn>
           </Linked>
           <Suspense fallback={<div>Loading...</div>}>
